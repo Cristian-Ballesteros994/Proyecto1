@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+   <!-- CRISTIAN BALLESTEROS -->
+   <!-- LIZETH ORTIZ -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promedio estudiante</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+<body>
+    <div class='container'>
+            <!--  <div class="text-muted">
+            <h6>1. Un colegio desea saber el promedio general de un estudiante según cada
+                materia y promedio general de todas  sus calificaciones:
+                Los porcentajes equivalentes para cada una de las materias están distribuidos de
+                la siguiente manera:
+                PROGRAMACION: 2 parciales 40 %, 2 quices 20 % y 2 trabajos en clase
+                equivalente al 40 %.
+                CALCULO: 2 parciales 60 %, 2 quices 40 %.
+                QUIMICA: 1 parcial 45 %, 1 quiz 25 % 1 trabajo en clase 30 %.
+                Existe una materia llamada proyecto integrador la cual se homologa con
+                programación, la nota final de la materia es ingresada por el usuario y tendrá
+                una incidencia del 10% sobre la materia de programación
+                Se debe indicar el promedio por cada una de las diferentes materias si es mayor o
+                igual a 3 se le indicara al estudiante que aprobó de lo contrario que no aprobó la
+                materia
+                Si el promedio general del estudiante es mayor o igual a 4.8 se le enviara al
+                usuario un mensaje informando que el estudiante ha sido becado. Si su promedio
+                es mayor o igual a 3 y menos igual a 4.7 se le enviara al usuario un mensaje
+                informando que el estudiante APROBO el semestre, si el promedio es menor a 3
+                se le enviara al usuario un mensaje informando que el estudiante ha
+                REPROBADO el semestre.</h6>
+            </div> -->
+        </div>
+        <div class="container" id="app">
+            <h2 class="text-muted">INGRESE LAS NOTAS OBTENIDAS POR EL ESTUDIANTE</h2>
+            <div class="shadow-none p-3 mb-5 bg-light rounded"></div>
+            <!-- Programacion -->
+            <H5>PROGRAMACION</H5>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="text-muted">Parcial 1 = 20%</label>
+                            <input type="number" v-model="proPar1" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="text-muted">Parcial 2 = 20%</label>
+                            <input type="number" v-model="proPar2" class="form-control">
+                        </div>
+                 </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="text-muted">Quiz 1 = 10%</label>
+                        <input type="number" v-model="proQuiz1" class="form-control">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="text-muted">Quiz 2 = 10%</label>
+                        <input type="number" v-model="proQuiz2" class="form-control">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="text-muted">Trabajo 1 = 20%</label>
+                        <input type="number" v-model="proTrab1" class="form-control">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="text-muted">Trabajo 2 = 20%</label>
+                        <input type="number" v-model="proTrab2" class="form-control">
+                    </div>
+                </div>
+                <button type="button" v-on:click="calcularNotaProgramacion" class="btn btn-outline-dark" style="width:100px;height:80px">Calcular</button>
+                </div>
+             </div>
+            <!-- Proyecto integrador -->
+            <h5>PROYECTO INTEGRADOR</h5>
+            <div class="container">
+                <div class="row">
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label class="text-muted">Nota Proyecto Integrador</label>
+                            <input type="number" v-model="proyInt" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Calculo -->
+            <h5>CALCULO</h5>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="text-muted">Parcial 1 = 30%</label>
+                        <input type="number" v-model="calPar1" class="form-control">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="text-muted">Parcial 2 = 30%</label>
+                        <input type="number" v-model="calPar2" class="form-control">
+                    </div>
+                 </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="text-muted">Quiz 1 = 20%</label>
+                        <input type="number" v-model="calQuiz1" class="form-control">
+                    </div>
+                 </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="text-muted">Quiz 2 = 20%</label>
+                        <input type="number" v-model="calQuiz2" class="form-control">
+                    </div>
+                </div>
+                 <button type="button" v-on:click="calcularNotaCalculo" class="btn btn-outline-dark" style="width:100px;height:80px">Calcular</button>
+                </div>
+         </div>
+        <!-- Quimica -->
+        <h5>QUIMICA</h5>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label class="text-muted">Parcial = 45%</label>
+                        <input type="number" v-model="quimPar" class="form-control">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="text-muted">Quiz = 25%</label>
+                        <input type="number" v-model="quimQuiz" class="form-control">
+                    </div>
+                 </div>
+                 <div class="col">
+                    <div class="form-group">
+                        <label class="text-muted">Trabajo = 30%</label>
+                        <input type="number" v-model="quimTrab" class="form-control">
+                    </div>
+                 </div>
+                 <button type="button" v-on:click="calcularNotaQuimica" class="btn btn-outline-dark" style="width:100px;height:80px">Calcular</button>
+                </div>
+         </div>
+         <div class="shadow-none p-6 mb-5 bg-light rounded"></div>
+         <button type="button" v-on:click="calcularPromedioSemestre" class="btn btn-success">Calcular Promedio</button>
+
+         <!-- Tabla de resultados -->
+
+         <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">Programación</th>
+                <th scope="col">Proyecto Integrador</th>
+                <th scope="col">Cálculo</th>
+                <th scope="col">Química</th>
+                <th scope="col" >Promedio semestre</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{promProgramacion2}}</td>
+                <td>{{proyInt}}</td>
+                <td>{{promCalculo}}</td>
+                <td>{{promQuimica}}</td>
+                <td>{{promSemestre}}</td>
+              </tr>
+              <tr>
+                <td>{{VpromProgramacion2}}</td>
+                <td>{{VproyInt}}</td>
+                <td>{{VpromCalculo}}</td>
+                <td>{{VpromQuimica}}</td>
+                <td>{{VpromSemestre}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+    <script src="js/vue.js"></script>
+    <script src="js/main1.js"></script>
+</body>
+</html>
